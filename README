@@ -1,0 +1,94 @@
+OpenCV Utilities 0.01
+=====================
+
+I am creating an OpenCV (opencv.org) utility library. OpenCV lacks many
+important utilities which makes it difficult to use. For example, you
+need to write atleast 5/6 lines of code to perform a simple FFT (padding,
+converting data type, merging etc.) whereas in MATLAB it is only one line
+code. I am trying to make the interfaces of common operations easier in
+OpenCV. Please contribute to this stub if you like the idea.
+
+Current Functions
+=================
+// Returns the depth of a matrix as string (e.g. "CV_8U", "CV_16U" etc.)
+std::string getDepth(cv::Mat);
+
+// Returns if a point is within an ellipse. The first three
+// arguments describe the ellipse (center, axes and angle 
+// respectively). The last argument is the point to be tested
+bool isInside(cv::Point2f, cv::Size, float,cv::Point2f);
+
+// MATLAB style histogram plotter
+// First argument represents the matrix, second argument
+// represents name of the window
+void hist(cv::Mat,std::string);
+
+// Multiply an N channel matrix with a one channel matrix.
+// If TargetDepth is Negative then depth of inputNch is used.
+// Otherwise, both the inputs are converted to targetDepth
+// and the output depth also becomes targetDepth.
+cv::Mat multiplyWith1ch(cv::Mat inputNch, cv::Mat input1ch,
+	int targetDepth = -1);
+
+// MATLAB style FFT calculator
+cv::Mat fft(cv::Mat);
+
+// TODO: Check and Debug
+// Fits an image within a specified screenwidth and screenheight
+// Args: inImg, ScreenWidth, ScreenHeight
+cv::Mat fitIn(cv::Mat, int, int);
+
+// TODO: Check and Debug
+// MATLAB style subplot. The arguments are wheretodraw,
+//whattodraw, subplot rows, subplot columns and subplot current cell
+void subplot(cv::Mat &, cv::Mat,
+		int, int, int);
+
+//circular shift n rows from up to down if n > 0, -n rows from down to up if n < 0
+void shiftRows(cv::Mat& mat,int n) ;
+
+//circular shift n columns from left to right if n > 0, -n columns from right to left if n < 0
+void shiftCols(cv::Mat& mat, int n);
+		
+//circular shift one row from up to down
+void shiftRows(cv::Mat& mat);		
+
+// TODO: Debug it
+// MATLAB style matrix min
+cv::Mat mMin(cv::Mat inMatrix, int dim, cv::Mat &outMinIdx);
+
+
+OpenBSD License
+===============
+ *  Copyright (c) 2013-2099
+ *	Md. Iftekhar Tanveer (go2chayan@gmail.com or mdiftekhartanveer@gmail.com)
+ *  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by Md. Iftekhar Tanveer
+ *	and his collaborator.
+ * 4. Neither the name of Md. Iftekhar Tanveer nor the names of his collaborator
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
